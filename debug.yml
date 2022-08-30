@@ -1,0 +1,13 @@
+- name: Debug
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Get user info
+      chage:
+        user: testuser
+        expire_date: '2022-12-30'
+      register: userinfo
+
+    - name: Debug msg user info
+      debug:
+        msg: "{{userinfo.info.expire_date}}"
